@@ -2,6 +2,8 @@
 # which allows us to use the class as a type inside the class.
 from __future__ import annotations
 
+from typing import Union
+
 import attr
 import numpy as np
 
@@ -52,14 +54,14 @@ class Sudoku:
                 > 1
             ):
                 return False
-        for box_number_row in range(0, 3):
-            for box_number_column in range(0, 3):
+        for box_number_row in range(0, 9, 3):
+            for box_number_column in range(0, 9, 3):
                 if (
                     np.max(
                         np.bincount(
                             self.data[
-                                3 * box_number_row + 0 : 3 * box_number_row + 3,
-                                3 * box_number_column + 0 : 3 * box_number_column + 3,
+                                box_number_row : box_number_row + 3,
+                                box_number_column : box_number_column + 3,
                             ].flatten()
                         )[1:],
                         initial=0,
@@ -69,7 +71,7 @@ class Sudoku:
                     return False
         return True
 
-    def solve(self):
+    def solve(self) -> Union[bool, Sudoku]:
         """
         Solvers are to be implemented in child classes.
         Currently available solvers: BruteForceSolver.

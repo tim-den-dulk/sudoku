@@ -1,7 +1,7 @@
 import numpy as np
 
 from src.brute_force_solver import BruteForceSolver
-from tests.fixtures import masked_valid_sudoku, valid_sudoku, unsolvable_sudoku
+from tests.fixtures import masked_valid_sudoku, unsolvable_sudoku, valid_sudoku
 
 
 def test_brute_force_solver(valid_sudoku, masked_valid_sudoku):
